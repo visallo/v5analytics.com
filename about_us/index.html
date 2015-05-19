@@ -42,7 +42,7 @@
       <h1 id="about-us">About Us</h1>
 <p>V5 Analytics is focused on helping you get the most out of your data.  With experience in open-source and big-data technologies, V5 Analytics offers our customers the tools and know-how they need to make critical business decisions.</p>
 <h2 id="our-philosophy">Our Philosophy</h2>
-<p>We build big data solutions for our customers using open source technology. We believe in the open source model of development and in the communities supporting the wealth of open source, big data technologies. Based on this belief, Visallo&#8482; and the tools used to build it are contributed to the open-source community.</p>
+<p>We build big data solutions for our customers using open source technology. We believe in the open source model of development and in the communities supporting the wealth of open source, big data technologies. Based on this belief, Visallo and the tools used to build it are contributed to the open-source community.</p>
 
     </article>
 </section>
@@ -54,7 +54,7 @@
           <section>
             <h1><a href="/open_source">Open Source</a></h1>
             <ul>
-              <li><a href="https://github.com/v5analytics/visallo">Visallo&#8482;</a></li>
+              <li><a href="https://github.com/v5analytics/visallo">Visallo</a></li>
               <li><a href="https://github.com/v5analytics/vertexium">Vertexium</a></li>
               <li><a href="https://github.com/v5analytics/simple-orm">Simple ORM</a></li>
               <li><a href="https://github.com/v5analytics/webster">Webster</a></li>
@@ -88,6 +88,41 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
         ga('create', 'UA-63006144-1', 'auto');
         ga('send', 'pageview');
+        window.addEventListener('load', function() {
+            window.addEventListener('resize', debounce(stickyFooter, 100), false);
+            stickyFooter();
+
+            function stickyFooter() {    
+                var outerContainer = document.querySelector('body > .outer-container');
+                outerContainer.style.minHeight = '';
+                var header = document.querySelector('body > header'),
+                    footer = document.querySelector('body > footer'),
+                    docHeight = 
+                        header.offsetHeight +
+                        outerContainer.offsetHeight,        
+                    diff = window.innerHeight - docHeight;
+
+                if (!isNaN(diff) && diff > 0) {
+                    outerContainer.style.minHeight = (outerContainer.offsetHeight + diff - footer.offsetHeight) + 'px';
+                } else {
+                    outerContainer.style.minHeight = '';
+                }
+            }
+            function debounce(func, wait, immediate) {
+              var timeout;
+              return function() {
+                var context = this, args = arguments;
+                var later = function() {
+                  timeout = null;
+                  if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+              };
+            };
+        });
       </script>
     </body>
 </html>
