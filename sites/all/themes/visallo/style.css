@@ -1166,7 +1166,18 @@ code {
 .icon-list-left, .icon-list-right{
 	display: inline-block;
 	vertical-align: top;
-	/* margin-bottom: 2em; */
+}
+.icon-list-right span {
+  font-size: 100%;
+  color: #888;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+.icon-list-right span em {
+	visibility: hidden;
+}
+.icon-list-item:hover span em {
+	visibility: visible;
 }
 
 .icon-list-left{
